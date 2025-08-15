@@ -6,17 +6,18 @@ def main():
         2: "Paper",
         3: "Scissors"
     }
-    isPlay = input("Do you want to play? (y/n): ")
+    is_play = input("Do you want to play? (y/n): ")
     attempts = 0
     win = 0
     lose = 0
     
-    while isPlay == "y" or isPlay == "Y" or isPlay == "yes" or isPlay == "Yes" or isPlay == "YES" or isPlay == "д" or isPlay == "Д" or isPlay == "да" or isPlay == "Да":
-        player_choice = int(input("\nEnter 1 for Rock, 2 for Paper, 3 for Scissors: "))
+    while is_play.lower() in ("y", "yes", "д", "да"):
         computer_choice = randint(1, 3)
         
-        if player_choice < 1 or player_choice > 3:
-            print("\nInvalid input!")
+        try:
+           player_choice = int(input("\nEnter 1 for Rock, 2 for Paper, 3 for Scissors: "))
+        except ValueError:
+            print("\nInvalid input. Try again.")
             continue
         
         print(f"\nYour choice: {choices[player_choice]}")
@@ -38,12 +39,13 @@ def main():
             lose += 1
         
         attempts += 1
-        isPlay = input("Do you want to play again? (y/n): ")
+        is_play = input("Do you want to play again? (y/n): ")
     
     print(f"\nYou played {attempts} times. You won {win} times and lost {lose} times.")
     print("Goodbye!")
     
-main()
+if __name__ == "__main__":
+    main()
     
     
     
